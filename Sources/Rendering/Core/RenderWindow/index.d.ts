@@ -7,13 +7,42 @@ export interface T100 {
 }
 export const DEFAULT_VALUES: T100;
 export interface T101 {
-  [key: string]: any;
+  renderers: any[];
+  views: any[];
+  interactor: any;
+  neverRendered: boolean;
+  numberOfLayers: number;
 }
-declare function extend_1(publicAPI: any, model: any, initialValues?: T101): void;
+
+declare function extend_1(publicAPI: any, model: any, initialValues?: Partial<T101>): void;
 export const extend: typeof extend_1;
-export const newInstance: any;
+export interface RenderWindow {
+  addRenderer: (renderer: any) => void;
+  removeRenderer: (renderer: any) => void;
+  hasRenderer: (renderer: any) => boolean;
+  addView: (view: any) => void;
+  removeView: (view: any) => void;
+  hasView: (view: any) => boolean;
+  render: () => void;
+  getStatistics: () => {
+    propCount: number,
+    invisiblePropCount: number,
+    [primitiveKey: string]: number,
+    str: string
+  };
+  captureImages: (format: string) => any[];
+  getInteractor: () => any;
+  getNumberOfLayers: () => any;
+  getViews: () => any;
+  setInteractor: (interactor: any) => void;
+  setNumberOfLayers: (nLayers: any) => void;
+  setViews: (views: any) => void;
+  getNeverRendered: () => any;
+  getRenderers: () => any[];
+}
+export const newInstance: RenderWindow;
 export interface T102 {
-  newInstance: any;
+  newInstance: RenderWindow;
   extend: typeof extend_1;
 }
 declare const T103: T102;
