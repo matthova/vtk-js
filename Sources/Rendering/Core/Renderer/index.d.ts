@@ -1,3 +1,5 @@
+type RenderWindow = import('../RenderWindow').RenderWindow;
+
 export interface T100 {
   pickedProp: any,
   activeCamera: any,
@@ -9,7 +11,7 @@ export interface T100 {
   automaticLightCreation: any,
   twoSidedLighting: any,
   lastRenderTimeInSeconds: any,
-  renderWindow: any,
+  renderWindow: RenderWindow,
   lights: any
   actors: any
   volumes: any
@@ -43,7 +45,6 @@ export interface Renderer {
   updateCamera: () => boolean;
   updateLightsGeometryToFollowCamera: () => void;
   updateLightGeometry: () => boolean;
-  // TODO IMPORT RenderWindow
   getVTKWindow: () => any;
   // TODO type layer
   // TODO type camera
@@ -51,7 +52,7 @@ export interface Renderer {
   makeCamera: () => any;
   getActiveCamera: () => any;
   getActiveCameraAndResetIfCreated: () => any;
-  addActor: () => void;
+  addActor: (actor: any) => void;
   removeActor: (actor: any) => void;
   removeAllActors: () => void;
   addVolume: () => void;
@@ -70,15 +71,15 @@ export interface Renderer {
   worldToView: (x: number, y: number, z: number) => [number, number, number];
   viewToProjection: (x: number, y: number, z: number, aspect: number) => [number, number, number];
   computeVisiblePropBounds: () => any[];
-  resetCamera: (bounds: any) => boolean;
+  resetCamera: (bounds?: any) => boolean;
   resetCameraClippingRange: (bounds: any) => boolean;
-  setRenderWindow: (renderWindow: any) => void;
+  setRenderWindow: (renderWindow: RenderWindow) => void;
   visibleActorCount: () => number;
   visibleVolumeCount: () => number;
   getMTime: () => number;
   getTransparent: () => boolean;
   isActiveCameraCreated: () => boolean;
-  getRenderWindow: () => any;
+  getRenderWindow: () => RenderWindow;
   getAllocatedRenderTime: () => any;
   getTimeFactor: () => any;
   getLastRenderTimeInSeconds: () => any;
